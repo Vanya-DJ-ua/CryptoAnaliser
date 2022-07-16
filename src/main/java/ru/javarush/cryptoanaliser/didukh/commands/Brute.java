@@ -30,19 +30,17 @@ public class Brute implements Action{
                 for (char c : alphabet) {
                     alphabetList.add(c);                                         // заполняем ерейлист алфавита
                 }
-            Collections.rotate(alphabetList,key);
-            char[] resultChars = decode(strings,alphabet,alphabetList);
-            String input = Arrays.toString(resultChars);
+                Collections.rotate(alphabetList,key);
+                char[] resultChars = decode(strings,alphabet,alphabetList);
+                String input = Arrays.toString(resultChars);
                 StringBuilder sb = new StringBuilder(input);
                 for (int i = 2; i< sb.length();i+=2){
                     sb.delete(i,i+1);
                 }
-                String x = sb.toString();
-                String[] resultStringArray = x.split(" {2}");            // на етом месте я стопорнулся гдето часа так на 3, пока не понял что нужно 2-а пробела
+                String[] resultStringArray = sb.toString().split(" {2}");            // на етом месте я стопорнулся гдето часа так на 3, пока не понял что нужно 2-а пробела
                 for (String s : exampleFileInStringArray) {                    // перебор слов из файла-примера
-                    int count = 0;
+                    int count = 0;                                             // переменная которая хранит количество совпадений
                     for (String value : resultStringArray) {                   // перебор слов из закодированного файла
-
                         if (s.equalsIgnoreCase(value)) {
                             count++;
                         }

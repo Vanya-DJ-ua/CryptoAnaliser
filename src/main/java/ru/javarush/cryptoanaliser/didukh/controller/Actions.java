@@ -1,16 +1,14 @@
 package ru.javarush.cryptoanaliser.didukh.controller;
 
-import ru.javarush.cryptoanaliser.didukh.commands.Action;
-import ru.javarush.cryptoanaliser.didukh.commands.Brute;
-import ru.javarush.cryptoanaliser.didukh.commands.Decoder;
-import ru.javarush.cryptoanaliser.didukh.commands.Encoder;
+import ru.javarush.cryptoanaliser.didukh.commands.*;
 
 import java.util.Locale;
 
 public enum Actions {
     ENCODE(new Encoder()),
     DECODE(new Decoder()),
-    BRUTE(new Brute());
+    BRUTE(new Brute()),
+    STATISTIC(new Statistic());
     private final Action action;
 
 

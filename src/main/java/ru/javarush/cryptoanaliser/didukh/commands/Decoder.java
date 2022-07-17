@@ -39,7 +39,7 @@ public class Decoder implements Action{
         return new Result(ResultCode.OK,"read all lines" + path);
     }
 
-    private char[] decode(char[] strings, char[] alphabet, ArrayList<Character> alphabetList){
+     char[] decode(char[] strings, char[] alphabet, ArrayList<Character> alphabetList){
         char[] resultChars = new char[strings.length];
         for(int i = 0; i < strings.length; i++){
             for (int b = 0; b < alphabet.length; b++ ){
@@ -53,7 +53,7 @@ public class Decoder implements Action{
         }return resultChars;
     }
 
-    private void writeDecoderedText(String outFile, char[] resultChars){
+     void writeDecoderedText(String outFile, char[] resultChars){
             StringWriter writer = new StringWriter();
             writer.write(resultChars, 0, resultChars.length);
             Path pathOut = Path.of(outFile);

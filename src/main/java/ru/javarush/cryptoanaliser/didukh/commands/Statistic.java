@@ -32,41 +32,8 @@ public class Statistic implements Action{
             char[] alphabetInCharArray = Strings.ALPHABET.toCharArray();
             HashMap<Double,Character> txtFileStatistics = new HashMap<>();
             HashMap<Double,Character> exampleFileStatistics = new HashMap<>();
-
-
-            for (char value : alphabetInCharArray) {
-                int count = 0;
-                int textCharCode;
-                for (char c : codedTextInCharArray) {
-                    textCharCode = c;
-                    if ((int) value == textCharCode) {
-                        count++;
-                    }
-
-                }
-                double coeficient = Math.abs(count*1000) / codedTextInCharArray.length;
-                txtFileStatistics.put(coeficient, value);           // в значення записуємо символ а в ключ коєфіцієнт його повторень в тексті
-            }
-
-
-            for (char value : alphabetInCharArray) {
-                int count = 0;
-                int textCharCode;
-                for (char c : exampleTextInCharArray) {
-                    textCharCode = c;
-                    if ((int) value == textCharCode) {
-                        count++;
-                    }
-
-                }
-                double coeficient = (count*1000) / exampleTextInCharArray.length;
-                exampleFileStatistics.put(coeficient, value);           // в значення записуємо символ а в ключ коєфіцієнт його повторень в тексті
-            }
-
-
-
-
-
+            putStatistics(codedTextInCharArray,alphabetInCharArray,txtFileStatistics);
+            putStatistics(exampleTextInCharArray,alphabetInCharArray,exampleFileStatistics);
 
               double maxValueOfLetterTextFile = Collections.max(txtFileStatistics.keySet());            // максимальний коєфіцієнт повторення символа з тексту
             double maxValueOfLetterExampleFile = Collections.max(exampleFileStatistics.keySet());     // максимальний коєфіцієнт повторення символа з тексту-прикладу
@@ -89,12 +56,6 @@ public class Statistic implements Action{
         } catch (IOException e) {
             throw new ApplicationExeption("IO error",e);
         }
-
-
-
-
-
-
         return new Result(ResultCode.OK,"read all lines" + path);
     }
 
@@ -136,7 +97,20 @@ public class Statistic implements Action{
 
     }
 
+    static void putStatistics(char[] symbols, char[] alphabet,HashMap<Double,Character> statistics){
+        for (char value : alphabet) {
+            int count = 0;
+            int textCharCode;
+            for (char c : symbols) {
+                textCharCode = c;
+                if ((int) value == textCharCode) {
+                    count++;
+                }
 
+            }
+            double coeficient = (count*1000) / symbols.length;
 
-
+            statistics.put(coeficient, value);           // в значення записуємо символ а в ключ коєфіцієнт його повторень в тексті
+        }
+    }
 }
